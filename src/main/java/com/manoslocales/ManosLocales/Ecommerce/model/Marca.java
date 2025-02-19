@@ -20,6 +20,17 @@ public class Marca {
     @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL) //* Una marca puede tener muchos productos
     private List<Producto> productos; //* Lista de productos que pertenecen a esta marca
 
+
+    public Marca(Long id, String nombre, String descripcion, List<Producto> productos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.productos = productos;
+    }
+
+    public Marca() {
+    }
+
     public Long getId() {
         return id;
     }

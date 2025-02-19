@@ -13,5 +13,27 @@ public class EstadoPedido {
     private Long id;
     private String descripcion;
 
+    public EstadoPedido(String descripcion, Long id) {
+        this.descripcion = descripcion;
+        this.id = id;
+    }
 
+    public EstadoPedido() {
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

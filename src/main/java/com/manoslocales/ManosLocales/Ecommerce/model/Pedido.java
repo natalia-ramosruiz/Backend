@@ -24,6 +24,18 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL) //un pedido puede tener varios productos
     private List<DetallePedido> detalles;
 
+    public Pedido(Long id, List<DetallePedido> detalles, Usuario usuario, String estado, double total, LocalDateTime fecha) {
+        this.id = id;
+        this.detalles = detalles;
+        this.usuario = usuario;
+        this.estado = estado;
+        this.total = total;
+        this.fecha = fecha;
+    }
+
+    public Pedido() {
+    }
+
     public Long getId() {
         return id;
     }
