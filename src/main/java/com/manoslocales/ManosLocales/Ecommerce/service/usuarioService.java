@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 public class usuarioService implements IusuarioService {
 
 
-    @Autowired
+
     IusuarioRepository iusuarioRepository;
+
+    @Autowired
+    public usuarioService(IusuarioRepository iusuarioRepository) {
+        this.iusuarioRepository = iusuarioRepository;
+    }
 }

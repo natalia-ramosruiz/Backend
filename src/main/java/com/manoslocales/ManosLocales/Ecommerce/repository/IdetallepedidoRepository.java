@@ -8,5 +8,4 @@ import java.util.List;
 
 @Repository
 public interface IdetallepedidoRepository extends JpaRepository<DetallePedido, Long> {
-    List<DetallePedido> findByPedido(Pedido pedido);
 }

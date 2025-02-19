@@ -10,6 +10,5 @@ public interface IpedidoService {
     List<Pedido> findAll();
     void delete(Long id);
     Pedido update(Pedido pedido);
-    List<Pedido> findByFecha(LocalDateTime inicio, LocalDateTime fin);
-    List<Pedido> findByEstado(String estado);
+
 }

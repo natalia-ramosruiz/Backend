@@ -12,5 +12,4 @@ public interface IproductoService {
     void delete(Long id);
     Producto update(Producto producto);
     List<Producto> findByMarca(Marca marca);
-    List<Producto> findByCategoria(Categoria categoria);
 }

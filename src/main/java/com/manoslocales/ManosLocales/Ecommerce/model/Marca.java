@@ -17,6 +17,6 @@ public class Marca {
     private String nombre;
     private String descripcion;
 
-    @OneToMany(mappedBy = "marca") //* Una marca puede tener muchos productos
+    @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL) //* Una marca puede tener muchos productos
     private List<Producto> productos; //* Lista de productos que pertenecen a esta marca
 }

@@ -8,6 +8,4 @@ import java.util.List;
 
 @Repository
 public interface IpedidoRepository extends JpaRepository<Pedido, Long> {
-    List<Pedido> findByFechaBetween(LocalDateTime inicio, LocalDateTime fin);
-    List<Pedido> findByEstado(String estado);
 }

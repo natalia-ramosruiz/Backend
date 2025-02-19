@@ -7,8 +7,7 @@ import java.util.List;
 
 @Data //* Esta anotación de Lombok genera automáticamente getters, setters y también constructores
 @Entity //* Le dice a Spring que esta clase representa una tabla en la base de datos
-@Table(name = "pedido") //* Especifica el nombre de la tabla en la base de datos
-
+@Table(name = "pedido") //* Especifica el nombre de la tabla en la base de dato
 public class Pedido {
     //*Columnas de la tabla que estoy creando
     @Id //*PK

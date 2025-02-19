@@ -6,7 +6,6 @@ import lombok.Data;
 @Data //* Esta anotación de Lombok genera automáticamente getters, setters y también constructores
 @Entity //* Le dice a Spring que esta clase es una tabla en la base de datos
 @Table(name = "producto") //* Especifica el nombre de la tabla en la base de datos
-
 public class Producto {
     //*Columnas de la tabla que estoy creando
     @Id //*PK

@@ -21,16 +21,19 @@ public class DetallePedido {
     private Pedido pedido; // Referencia al pedido al que pertenece este detalle
 
     @ManyToOne // Muchos detalles pueden tener el mismo producto
-    @JoinColumn(name = "id_producto")
+    @JoinColumn(name = "id_producto", referencedColumnName = "id")
     private Producto producto; // Referencia al producto que se está pidiendo
 
-    public Long getIdDetallePedido() {
-        return idDetallePedido;
+    public DetallePedido(Long idDetallePedido, double precioUnitario, int cantidad, double subtotal, Pedido pedido, Producto producto) {
+        this.idDetallePedido = idDetallePedido;
+        this.precioUnitario = precioUnitario;
+        this.cantidad = cantidad;
+        this.subtotal = subtotal;
+        this.pedido = pedido;
+        this.producto = producto;
     }
 
-    public void setIdDetallePedido(Long idDetallePedido) {
-        this.idDetallePedido = idDetallePedido;
-    }
+    public DetallePedido() {}
 
     public int getCantidad() {
         return cantidad;
@@ -40,12 +43,12 @@ public class DetallePedido {
         this.cantidad = cantidad;
     }
 
-    public double getPrecioUnitario() {
-        return precioUnitario;
+    public Long getIdDetallePedido() {
+        return idDetallePedido;
     }
 
-    public void setPrecioUnitario(double precioUnitario) {
-        this.precioUnitario = precioUnitario;
+    public void setIdDetallePedido(Long idDetallePedido) {
+        this.idDetallePedido = idDetallePedido;
     }
 
     public double getSubtotal() {
@@ -54,6 +57,14 @@ public class DetallePedido {
 
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
+    }
+
+    public double getPrecioUnitario() {
+        return precioUnitario;
+    }
+
+    public void setPrecioUnitario(double precioUnitario) {
+        this.precioUnitario = precioUnitario;
     }
 
     public Pedido getPedido() {

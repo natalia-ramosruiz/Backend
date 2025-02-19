@@ -11,43 +11,79 @@ import java.util.List;
 @Service
 public class DetallePedidoService implements IdetallepedidoService {
 
-    @Autowired
+
     private IdetallepedidoRepository detallePedidoRepository;
+
+    @Autowired
+    public DetallePedidoService(IdetallepedidoRepository detallePedidoRepository) {
+        this.detallePedidoRepository = detallePedidoRepository;
+    }
 
     @Override
     public DetallePedido save(DetallePedido detallePedido) {
-        detallePedido.setIdDetallePedido(
-                detallePedido.getCantidad() * detallePedido.getPrecioUnitario()
-        );
-        return detallePedidoRepository.save(detallePedido);
+        return null;
     }
 
     @Override
     public DetallePedido findById(Long id) {
-        return detallePedidoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Detalle de pedido no encontrado"));
+        return null;
     }
 
     @Override
     public List<DetallePedido> findAll() {
-        return detallePedidoRepository.findAll();
+        return List.of();
     }
 
     @Override
     public void delete(Long id) {
-        detallePedidoRepository.deleteById(id);
+
     }
 
     @Override
     public DetallePedido update(DetallePedido detallePedido) {
-        detallePedido.setSubtotal(
-                detallePedido.getCantidad() * detallePedido.getPrecioUnitario()
-        );
-        return detallePedidoRepository.save(detallePedido);
+        return null;
     }
 
     @Override
     public List<DetallePedido> findByPedido(Pedido pedido) {
-        return detallePedidoRepository.findByPedido(pedido);
+        return List.of();
     }
+
+    //
+//    @Override
+//    public DetallePedido save(DetallePedido detallePedido) {
+//        detallePedido.setIdDetallePedido(
+//                detallePedido.getCantidad() * detallePedido.getPrecioUnitario()
+//        );
+//        return detallePedidoRepository.save(detallePedido);
+//    }
+//
+//    @Override
+//    public DetallePedido findById(Long id) {
+//        return detallePedidoRepository.findById(id)
+//                .orElseThrow(() -> new RuntimeException("Detalle de pedido no encontrado"));
+//    }
+//
+//    @Override
+//    public List<DetallePedido> findAll() {
+//        return detallePedidoRepository.findAll();
+//    }
+//
+//    @Override
+//    public void delete(Long id) {
+//        detallePedidoRepository.deleteById(id);
+//    }
+//
+//    @Override
+//    public DetallePedido update(DetallePedido detallePedido) {
+//        detallePedido.setSubtotal(
+//                detallePedido.getCantidad() * detallePedido.getPrecioUnitario()
+//        );
+//        return detallePedidoRepository.save(detallePedido);
+//    }
+//
+//    @Override
+//    public List<DetallePedido> findByPedido(Pedido pedido) {
+//        return detallePedidoRepository.findByPedido(pedido);
+//    }
 }
