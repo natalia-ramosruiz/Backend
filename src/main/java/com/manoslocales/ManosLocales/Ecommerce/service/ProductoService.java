@@ -1,19 +1,23 @@
 package com.manoslocales.ManosLocales.Ecommerce.service;
 
-import com.taller.ecommerce.model.Producto;
-import com.taller.ecommerce.model.Marca;
-import com.taller.ecommerce.model.Categoria;
-import com.taller.ecommerce.repository.ProductoRepository;
-import com.taller.ecommerce.service.interfaces.ProductoService;
+
+import com.manoslocales.ManosLocales.Ecommerce.model.Producto;
+import com.manoslocales.ManosLocales.Ecommerce.repository.IproductoRepository;
+import com.manoslocales.ManosLocales.Ecommerce.service.interfaces.IproductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class ProductoService implements ProductoService {
+public class ProductoService implements IproductoService {
+
+    private final IproductoRepository productoRepository;
 
     @Autowired
-    private ProductoRepository productoRepository;
+    public ProductoService(IproductoRepository productoRepository) {
+        this.productoRepository = productoRepository;
+    }
 
     @Override
     public Producto save(Producto producto) {
@@ -21,36 +25,54 @@ public class ProductoService implements ProductoService {
     }
 
     @Override
-    public Producto findById(Long id) {
+    public Producto findProductById(Long id) {
         return productoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
     }
 
     @Override
-    public List<Producto> findAll() {
-        return productoRepository.findAll();
-    }
-
-    @Override
-    public void delete(Long id) {
-        productoRepository.deleteById(id);
-    }
-
-    @Override
-    public Producto update(Producto producto) {
-        if (producto.getId() == null) {
-            throw new RuntimeException("No se puede actualizar un producto sin ID");
+    public List<Producto> findAllProducts() {
+        try {
+            return productoRepository.findAll();
+        } catch (Exception e) {
+            throw new RuntimeException("Error al cargar los productos: " + e.getMessage());
         }
-        return productoRepository.save(producto);
     }
 
     @Override
-    public List<Producto> findByMarca(Marca marca) {
-        return productoRepository.findByMarca(marca);
+    public Producto updateProduct(Long id, Producto producto) {
+        try {
+            Optional<Producto> existingProduct = productoRepository.findById(id);
+            if (existingProduct.isPresent()) {
+                producto.setId(id);
+                return productoRepository.save(producto);
+            } else {
+                throw new RuntimeException("Product not found with id: " + id);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Error al actualizar producto: " + e.getMessage());
+        }
     }
 
     @Override
-    public List<Producto> findByCategoria(Categoria categoria) {
-        return productoRepository.findByCategoria(categoria);
+    public void deleteProduct(Long id) {
+        try {
+            if (!productoRepository.existsById(id)) {
+                throw new RuntimeException("Producto no encontrado por el id: " + id);
+            }
+            productoRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException("Error al eliminar producto: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean isProductInStock(Long id) {
+        try {
+            Optional<Producto> producto = productoRepository.findById(id);
+            return producto.map(p -> p.getStock() > 0).orElse(false);
+        } catch (Exception e) {
+            throw new RuntimeException("Error al encontrar producto en el stock: " + e.getMessage());
+        }
     }
 }

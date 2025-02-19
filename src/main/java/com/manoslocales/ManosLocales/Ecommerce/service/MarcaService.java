@@ -33,12 +33,4 @@ public class MarcaService implements ImarcaService {
     public void delete(Long id) {
         marcaRepository.deleteById(id);
     }
-
-    @Override
-    public Marca update(Marca marca) {
-        if (marca.getId() == null) {
-            throw new RuntimeException("No se puede actualizar una marca sin ID");
-        }
-        return marcaRepository.save(marca);
-    }
 }

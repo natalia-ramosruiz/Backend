@@ -15,11 +15,61 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime fecha;
-    private Double total;
+    private double total;
+    private String estado; // "PENDIENTE", "COMPLETADO", "CANCELADO"
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @ManyToOne //un usuario puede tener muchos pedidos
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL) //un pedido puede tener varios productos
     private List<DetallePedido> detalles;
 
-    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private DetallePedido detallePedido;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public List<DetallePedido> getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(List<DetallePedido> detalles) {
+        this.detalles = detalles;
+    }
 }

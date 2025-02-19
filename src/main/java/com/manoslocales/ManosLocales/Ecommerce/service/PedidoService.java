@@ -1,8 +1,8 @@
 package com.manoslocales.ManosLocales.Ecommerce.service;
 
-import com.taller.ecommerce.model.Pedido;
-import com.taller.ecommerce.repository.PedidoRepository;
-import com.taller.ecommerce.service.interfaces.PedidoService;
+import com.manoslocales.ManosLocales.Ecommerce.model.Pedido;
+import com.manoslocales.ManosLocales.Ecommerce.repository.IpedidoRepository;
+import com.manoslocales.ManosLocales.Ecommerce.service.interfaces.IpedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
