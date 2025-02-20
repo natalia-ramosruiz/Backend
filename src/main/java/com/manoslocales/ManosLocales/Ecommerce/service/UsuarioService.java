@@ -7,7 +7,6 @@ import com.manoslocales.ManosLocales.Ecommerce.service.interfaces.IusuarioServic
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.GeneralSecurityException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,14 +14,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-public class usuarioService implements IusuarioService {
+public class UsuarioService implements IusuarioService {
 
 
 
     IusuarioRepository iusuarioRepository;
 
     @Autowired
-    public usuarioService(IusuarioRepository iusuarioRepository) {
+    public UsuarioService(IusuarioRepository iusuarioRepository) {
         this.iusuarioRepository = iusuarioRepository;
     }
 

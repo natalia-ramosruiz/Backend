@@ -50,16 +50,27 @@ public class ProductoService implements IproductoService {
 
     @Override
     public Producto updateProducto(Long id, Producto producto) {
-        Producto productoVerificar = iproductoRepository.findById(id).orElse(null); //verificar que el producto exista
-        if (productoVerificar==null){
+        Producto productoVerificar = iproductoRepository.findById(id).orElse(null); // Verificar que el producto exista
+        if (productoVerificar == null) {
             System.out.println("El producto no fue encontrado");
-            return productoVerificar; //si no encuentra ningun producto con ese id se devuelve
+            return null; // Devuelve null si no se encuentra el producto
         }
-            producto.setNombre(producto.getNombre());
-            producto.setDescripcion(producto.getDescripcion());
-            producto.setPrecio(producto.getPrecio());
-            producto.setStock(producto.getStock());
-            System.out.println("Producto actualizado con exito");
-            return iproductoRepository.save(producto); //devuelve con los nuevos datos
+
+        // Actualizar los atributos del producto existente
+        productoVerificar.setNombre(producto.getNombre());
+        productoVerificar.setDescripcion(producto.getDescripcion());
+        productoVerificar.setImagenPrincipal(producto.getImagenPrincipal());
+        productoVerificar.setImagenPrincipal(producto.getImagenPrincipal());
+        productoVerificar.setMiniatura1(producto.getMiniatura1());
+        productoVerificar.setMiniatura2(producto.getMiniatura2());
+        productoVerificar.setMiniatura3(producto.getMiniatura3());
+        productoVerificar.setMiniatura4(producto.getMiniatura4());
+        productoVerificar.setPrecio(producto.getPrecio());
+        productoVerificar.setTalla1(producto.getTalla1());
+        productoVerificar.setDescripcionLarga(producto.getDescripcionLarga());
+
+        System.out.println("Producto actualizado con éxito");
+        return iproductoRepository.save(productoVerificar); // Guarda y devuelve el producto actualizado
     }
+
 }
