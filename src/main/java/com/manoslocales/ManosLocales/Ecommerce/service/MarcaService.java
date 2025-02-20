@@ -10,7 +10,6 @@ import java.util.List;
 @Service
 public class MarcaService implements ImarcaService {
 
-
     private ImarcaRepository marcaRepository;
 
     @Autowired
@@ -19,51 +18,16 @@ public class MarcaService implements ImarcaService {
     }
 
     @Override
-    public Marca save(Marca marca) {
-        return null;
+    public Marca findByIdMarca(Long id) {
+        Marca marca = marcaRepository.findById(id).orElse(null);
+        if (marca==null){
+            System.out.println("La marca no fue encontrada");
+        }
+        return marca;
     }
 
     @Override
-    public Marca findById(Long id) {
-        return null;
+    public List<Marca> findAllMarca() {
+        return marcaRepository.findAll();
     }
-
-    @Override
-    public List<Marca> findAll() {
-        return List.of();
-    }
-
-    @Override
-    public Marca update(Marca marca) {
-        return null;
-    }
-
-    //    @Override
-//    public Marca save(Marca marca) {
-//        return marcaRepository.save(marca);
-//    }
-//
-//    @Override
-//    public Marca findById(Long id) {
-//        return marcaRepository.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Marca no encontrada"));
-//    }
-//
-//    @Override
-//    public List<Marca> findAll() {
-//        return marcaRepository.findAll();
-//    }
-//
-//    @Override
-//    public void delete(Long id) {
-//        marcaRepository.deleteById(id);
-//    }
-//
-//    @Override
-//    public Marca update(Marca marca) {
-//        if (marca.getId() == null) {
-//            throw new RuntimeException("No se puede actualizar una marca sin ID");
-//        }
-//        return marcaRepository.save(marca);
-//    }
 }

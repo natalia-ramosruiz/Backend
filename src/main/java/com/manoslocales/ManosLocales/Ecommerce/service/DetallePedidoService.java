@@ -2,6 +2,7 @@ package com.manoslocales.ManosLocales.Ecommerce.service;
 
 import com.manoslocales.ManosLocales.Ecommerce.model.DetallePedido;
 import com.manoslocales.ManosLocales.Ecommerce.model.Pedido;
+import com.manoslocales.ManosLocales.Ecommerce.model.Producto;
 import com.manoslocales.ManosLocales.Ecommerce.repository.IdetallepedidoRepository;
 import com.manoslocales.ManosLocales.Ecommerce.service.interfaces.IdetallepedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import java.util.List;
 @Service
 public class DetallePedidoService implements IdetallepedidoService {
 
-
     private IdetallepedidoRepository detallePedidoRepository;
 
     @Autowired
@@ -20,70 +20,22 @@ public class DetallePedidoService implements IdetallepedidoService {
     }
 
     @Override
-    public DetallePedido save(DetallePedido detallePedido) {
-        return null;
+    public DetallePedido saveDetallePedido(DetallePedido detallePedido) {
+        return detallePedidoRepository.save(detallePedido);
     }
 
     @Override
-    public DetallePedido findById(Long id) {
-        return null;
+    public DetallePedido findByIdDetallePedido(Long id) {
+        DetallePedido detallePedido = detallePedidoRepository.findById(id).orElse(null);
+        if (detallePedido == null) {
+            System.out.println("Pedido no fue encontrado");
+        }
+        return detallePedido;
     }
 
     @Override
-    public List<DetallePedido> findAll() {
-        return List.of();
+    public List<DetallePedido> findAllDetallePedido(Long id) {
+        return detallePedidoRepository.findAll();
     }
 
-    @Override
-    public void delete(Long id) {
-
-    }
-
-    @Override
-    public DetallePedido update(DetallePedido detallePedido) {
-        return null;
-    }
-
-    @Override
-    public List<DetallePedido> findByPedido(Pedido pedido) {
-        return List.of();
-    }
-
-    //
-//    @Override
-//    public DetallePedido save(DetallePedido detallePedido) {
-//        detallePedido.setIdDetallePedido(
-//                detallePedido.getCantidad() * detallePedido.getPrecioUnitario()
-//        );
-//        return detallePedidoRepository.save(detallePedido);
-//    }
-//
-//    @Override
-//    public DetallePedido findById(Long id) {
-//        return detallePedidoRepository.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Detalle de pedido no encontrado"));
-//    }
-//
-//    @Override
-//    public List<DetallePedido> findAll() {
-//        return detallePedidoRepository.findAll();
-//    }
-//
-//    @Override
-//    public void delete(Long id) {
-//        detallePedidoRepository.deleteById(id);
-//    }
-//
-//    @Override
-//    public DetallePedido update(DetallePedido detallePedido) {
-//        detallePedido.setSubtotal(
-//                detallePedido.getCantidad() * detallePedido.getPrecioUnitario()
-//        );
-//        return detallePedidoRepository.save(detallePedido);
-//    }
-//
-//    @Override
-//    public List<DetallePedido> findByPedido(Pedido pedido) {
-//        return detallePedidoRepository.findByPedido(pedido);
-//    }
 }

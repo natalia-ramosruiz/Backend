@@ -11,78 +11,30 @@ import java.util.List;
 @Service
 public class PedidoService implements IpedidoService {
 
+    private IpedidoRepository ipedidoRepository;
 
-   private IpedidoRepository ipedidoRepository;
-
-   @Autowired
+    @Autowired
     public PedidoService(IpedidoRepository ipedidoRepository) {
         this.ipedidoRepository = ipedidoRepository;
     }
 
     @Override
-    public Pedido save(Pedido pedido) {
-        return null;
+    public Pedido savePedido(Pedido pedido) {
+        return ipedidoRepository.save(pedido);
     }
 
     @Override
-    public Pedido findById(Long id) {
-        return null;
+    public Pedido findByIdPedido(Long id) {
+        Pedido pedido = ipedidoRepository.findById(id).orElse(null);
+        if (pedido==null){
+            System.out.println("El pedido no fue encontrado");
+        }
+        return pedido;
     }
 
     @Override
-    public List<Pedido> findAll() {
-        return List.of();
+    public List<Pedido> findAllPedido() {
+        return ipedidoRepository.findAll();
     }
 
-    @Override
-    public void delete(Long id) {
-
-    }
-
-    @Override
-    public Pedido update(Pedido pedido) {
-        return null;
-    }
-
-    //    @Override
-//    public Pedido save(Pedido pedido) {
-//        if (pedido.getFecha() == null) {
-//            pedido.setFecha(LocalDateTime.now());
-//        }
-//        return pedidoRepository.save(pedido);
-//    }
-//
-//    @Override
-//    public Pedido findById(Long id) {
-//        return pedidoRepository.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
-//    }
-//
-//    @Override
-//    public List<Pedido> findAll() {
-//        return pedidoRepository.findAll();
-//    }
-//
-//    @Override
-//    public void delete(Long id) {
-//        pedidoRepository.deleteById(id);
-//    }
-//
-//    @Override
-//    public Pedido update(Pedido pedido) {
-//        if (pedido.getId() == null) {
-//            throw new RuntimeException("No se puede actualizar un pedido sin ID");
-//        }
-//        return pedidoRepository.save(pedido);
-//    }
-//
-//    @Override
-//    public List<Pedido> findByFecha(LocalDateTime inicio, LocalDateTime fin) {
-//        return pedidoRepository.findByFechaBetween(inicio, fin);
-//    }
-//
-//    @Override
-//    public List<Pedido> findByEstado(String estado) {
-//        return pedidoRepository.findByEstado(estado);
-//    }
 }

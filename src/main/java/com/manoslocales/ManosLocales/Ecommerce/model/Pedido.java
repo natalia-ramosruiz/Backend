@@ -12,7 +12,7 @@ public class Pedido {
     //*Columnas de la tabla que estoy creando
     @Id //*PK
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_pedido;
     private LocalDateTime fecha;
     private double total;
     private String estado; // "PENDIENTE", "COMPLETADO", "CANCELADO"
@@ -25,7 +25,7 @@ public class Pedido {
     private List<DetallePedido> detalles;
 
     public Pedido(Long id, List<DetallePedido> detalles, Usuario usuario, String estado, double total, LocalDateTime fecha) {
-        this.id = id;
+        this.id_pedido = id;
         this.detalles = detalles;
         this.usuario = usuario;
         this.estado = estado;
@@ -37,11 +37,11 @@ public class Pedido {
     }
 
     public Long getId() {
-        return id;
+        return id_pedido;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id_pedido = id;
     }
 
     public LocalDateTime getFecha() {

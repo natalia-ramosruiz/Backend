@@ -19,72 +19,47 @@ public class ProductoService implements IproductoService {
     }
 
     @Override
-    public Producto save(Producto producto) {
-        return null;
+    public Producto saveProducto(Producto producto) {
+        return iproductoRepository.save(producto);
     }
 
     @Override
-    public Producto findById(Long id) {
-        return null;
+    public Producto findByIdProducto(Long id) {
+        Producto producto = iproductoRepository.findById(id).orElse(null); //Igualamos el producto con el id que le demos, si no encuentra un producto con ese ID vuelve la variable declarada producto nulo
+        if (producto==null){
+            System.out.println("El producto no fue encontrado");
+        }
+        return producto;
     }
 
     @Override
-    public List<Producto> findAll() {
-        return List.of();
+    public List<Producto> findAllProducto() {
+        return iproductoRepository.findAll();
     }
 
     @Override
-    public void delete(Long id) {
-
+    public void deleteProducto(Long id) {
+        Producto producto = iproductoRepository.findById(id).orElse(null);
+        if (producto==null){
+            System.out.println("El producto no fue encontrado");
+        }else {
+            iproductoRepository.deleteById(id);
+            System.out.println("Producto eliminado con exito");
+        }
     }
 
     @Override
-    public Producto update(Producto producto) {
-        return null;
+    public Producto updateProducto(Long id, Producto producto) {
+        Producto productoVerificar = iproductoRepository.findById(id).orElse(null); //verificar que el producto exista
+        if (productoVerificar==null){
+            System.out.println("El producto no fue encontrado");
+            return productoVerificar; //si no encuentra ningun producto con ese id se devuelve
+        }
+            producto.setNombre(producto.getNombre());
+            producto.setDescripcion(producto.getDescripcion());
+            producto.setPrecio(producto.getPrecio());
+            producto.setStock(producto.getStock());
+            System.out.println("Producto actualizado con exito");
+            return iproductoRepository.save(producto); //devuelve con los nuevos datos
     }
-
-    @Override
-    public List<Producto> findByMarca(Marca marca) {
-        return List.of();
-    }
-
-
-    //    @Override
-//    public Producto save(Producto producto) {
-//        return productoRepository.save(producto);
-//    }
-//
-//    @Override
-//    public Producto findById(Long id) {
-//        return productoRepository.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
-//    }
-//
-//    @Override
-//    public List<Producto> findAll() {
-//        return productoRepository.findAll();
-//    }
-//
-//    @Override
-//    public void delete(Long id) {
-//        productoRepository.deleteById(id);
-//    }
-//
-//    @Override
-//    public Producto update(Producto producto) {
-//        if (producto.getId() == null) {
-//            throw new RuntimeException("No se puede actualizar un producto sin ID");
-//        }
-//        return productoRepository.save(producto);
-//    }
-//
-//    @Override
-//    public List<Producto> findByMarca(Marca marca) {
-//        return productoRepository.findByMarca(marca);
-//    }
-//
-//    @Override
-//    public List<Producto> findByCategoria(Categoria categoria) {
-//        return productoRepository.findByCategoria(categoria);
-//    }
 }

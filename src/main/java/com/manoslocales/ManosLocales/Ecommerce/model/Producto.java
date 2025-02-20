@@ -10,7 +10,7 @@ public class Producto {
     //*Columnas de la tabla que estoy creando
     @Id //*PK
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id_producto;
     private String nombre;
     private String descripcion;
     private double precio;
@@ -18,25 +18,25 @@ public class Producto {
 
     @ManyToOne
     @JoinColumn(name = "id_marca")
-    private Marca marca;
+    private Marca marca_id; //*FK
 
     public Producto() {}
 
     public Producto(Marca marca, int stock, double precio, String descripcion, String nombre, Long id) {
-        this.marca = marca;
+        this.marca_id = marca;
         this.stock = stock;
         this.precio = precio;
         this.descripcion = descripcion;
         this.nombre = nombre;
-        this.id = id;
+        this.id_producto = id;
     }
 
     public Long getId() {
-        return id;
+        return id_producto;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id_producto = id;
     }
 
     public String getNombre() {
@@ -72,10 +72,10 @@ public class Producto {
     }
 
     public Marca getMarca() {
-        return marca;
+        return marca_id;
     }
 
     public void setMarca(Marca marca) {
-        this.marca = marca;
+        this.marca_id = marca;
     }
 }

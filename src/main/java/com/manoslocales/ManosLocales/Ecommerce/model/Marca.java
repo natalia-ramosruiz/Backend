@@ -13,30 +13,31 @@ public class Marca {
     //*Columnas de la tabla que estoy creando
     @Id //PK
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; //*ID único para cada marca
+    private Long id_marca; //*ID único para cada marca
     private String nombre;
     private String descripcion;
+    private String productos_id;
 
     @OneToMany(mappedBy = "marca", cascade = CascadeType.ALL) //* Una marca puede tener muchos productos
     private List<Producto> productos; //* Lista de productos que pertenecen a esta marca
 
-
-    public Marca(Long id, String nombre, String descripcion, List<Producto> productos) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.productos = productos;
-    }
-
     public Marca() {
     }
 
-    public Long getId() {
-        return id;
+    public Marca(Long id_marca, String nombre, String descripcion, String productos_id, List<Producto> productos) {
+        this.id_marca = id_marca;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.productos_id = productos_id;
+        this.productos = productos;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getId_marca() {
+        return id_marca;
+    }
+
+    public void setId_marca(Long id_marca) {
+        this.id_marca = id_marca;
     }
 
     public String getNombre() {
@@ -53,6 +54,14 @@ public class Marca {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getProductos_id() {
+        return productos_id;
+    }
+
+    public void setProductos_id(String productos_id) {
+        this.productos_id = productos_id;
     }
 
     public List<Producto> getProductos() {

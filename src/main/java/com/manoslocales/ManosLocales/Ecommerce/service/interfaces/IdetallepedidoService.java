@@ -5,10 +5,8 @@ import com.manoslocales.ManosLocales.Ecommerce.model.Pedido;
 import java.util.List;
 
 public interface IdetallepedidoService {
-    DetallePedido save(DetallePedido detallePedido);
-    DetallePedido findById(Long id);
-    List<DetallePedido> findAll();
-    void delete(Long id);
-    DetallePedido update(DetallePedido detallePedido);
-    List<DetallePedido> findByPedido(Pedido pedido);
+    DetallePedido saveDetallePedido(DetallePedido detallePedido);
+    DetallePedido findByIdDetallePedido(Long id);
+    List<DetallePedido> findAllDetallePedido(Long id);
+    //DetallePedido updateDetallePedido(Long id, DetallePedido detallePedido);
 }
