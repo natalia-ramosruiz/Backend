@@ -1,40 +1,41 @@
 package com.manoslocales.ManosLocales.Ecommerce.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Data //* Esta anotación de Lombok genera automáticamente getters, setters y también constructores
-@Entity //* Le dice a Spring que esta clase representa una tabla en la base de datos
-@Table(name = "detalle_pedido") //* Especifica el nombre de la tabla en la base de datos
+@Data
+@Entity
+@Table(name = "detalle_pedido")
 public class DetallePedido {
-    //*Columnas de la tabla que estoy creando
-    @Id //*PK
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_detalle;
 
-    private int cantidad; //* Guarda cuántos productos se pidieron
-    private double precioUnitario; // Guarda el precio de cada producto
-    private double subtotal; // Guarda el total (cantidad × precioUnitario)
+    private int cantidad;
+    private double precioUnitario;
+    private double subtotal;
 
-    @ManyToOne // Muchos detalles pueden pertenecer a un pedido
-    @JoinColumn(name = "id_pedido") // Columna que conecta con la tabla de pedidos
-    private Pedido pedido_id; // Referencia al pedido al que pertenece este detalle
+    @ManyToOne
+    @JoinColumn(name = "pedido_id", referencedColumnName = "id_pedido")
+    @JsonIgnoreProperties("detalles")
+    private Pedido pedido;
 
-    @ManyToOne // Muchos detalles pueden tener el mismo producto
-    @JoinColumn(name = "id_producto", referencedColumnName = "id")
-    private Producto producto_id; // Referencia al producto que se está pidiendo
-
+    @ManyToOne
+    @JoinColumn(name = "producto_id", referencedColumnName = "id_producto")
+    @JsonIgnoreProperties("detalles")
+    private Producto producto;
 
     public DetallePedido() {
     }
 
-    public DetallePedido(Long id_detalle, int cantidad, double precioUnitario, double subtotal, Pedido pedido_id, Producto producto_id) {
+    public DetallePedido(Long id_detalle, int cantidad, double precioUnitario, double subtotal, Pedido pedido, Producto producto) {
         this.id_detalle = id_detalle;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
         this.subtotal = subtotal;
-        this.pedido_id = pedido_id;
-        this.producto_id = producto_id;
+        this.pedido = pedido;
+        this.producto = producto;
     }
 
     public Long getId_detalle() {
@@ -69,19 +70,19 @@ public class DetallePedido {
         this.subtotal = subtotal;
     }
 
-    public Pedido getPedido_id() {
-        return pedido_id;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setPedido_id(Pedido pedido_id) {
-        this.pedido_id = pedido_id;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
-    public Producto getProducto_id() {
-        return producto_id;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setProducto_id(Producto producto_id) {
-        this.producto_id = producto_id;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 }

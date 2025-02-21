@@ -1,6 +1,7 @@
 package com.manoslocales.ManosLocales.Ecommerce.service;
 
 import com.manoslocales.ManosLocales.Ecommerce.model.Marca;
+import com.manoslocales.ManosLocales.Ecommerce.model.Pedido;
 import com.manoslocales.ManosLocales.Ecommerce.repository.ImarcaRepository;
 import com.manoslocales.ManosLocales.Ecommerce.service.interfaces.ImarcaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,11 @@ public class MarcaService implements ImarcaService {
     @Autowired
     public MarcaService(ImarcaRepository marcaRepository) {
         this.marcaRepository = marcaRepository;
+    }
+
+    @Override
+    public Marca createMarca(Marca marca) {
+        return this.marcaRepository.save(marca);
     }
 
     @Override

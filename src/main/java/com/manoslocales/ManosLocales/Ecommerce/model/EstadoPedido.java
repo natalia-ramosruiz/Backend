@@ -1,8 +1,6 @@
 package com.manoslocales.ManosLocales.Ecommerce.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -10,15 +8,30 @@ import lombok.Data;
 @Table(name = "estado_pedido")
 public class EstadoPedido {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String descripcion;
 
-    public EstadoPedido(String descripcion, Long id) {
-        this.descripcion = descripcion;
-        this.id = id;
-    }
+    @OneToOne
+    @JoinColumn(name = "pedido_id", referencedColumnName = "id_pedido")
+    private Pedido pedido;
+
 
     public EstadoPedido() {
+    }
+
+    public EstadoPedido(Long id, String descripcion, Pedido pedido) {
+        this.id = id;
+        this.descripcion = descripcion;
+        this.pedido = pedido;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDescripcion() {
@@ -29,11 +42,11 @@ public class EstadoPedido {
         this.descripcion = descripcion;
     }
 
-    public Long getId() {
-        return id;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 }

@@ -19,7 +19,7 @@ PedidoService pedidoService;
         this.pedidoService = pedidoService;
     }
 
-    @PostMapping ("/create")
+    @PostMapping()
     public ResponseEntity<Pedido> createPedido(@RequestBody Pedido pedido) {
         Pedido nuevoPedido = pedidoService.savePedido(pedido);
         return ResponseEntity.ok(nuevoPedido);

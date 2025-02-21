@@ -21,7 +21,7 @@ public class UsuarioController {
     }
 
     // Crear un nuevo usuario
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
         Usuario nuevoUsuario = usuarioService.createUsuario(usuario);
         return ResponseEntity.ok(nuevoUsuario);
@@ -39,7 +39,7 @@ public class UsuarioController {
     }
 
     // Obtener todos los usuarios
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<List<Usuario>> getAllUsuarios() {
         List<Usuario> usuarios = usuarioService.findAll();
         return ResponseEntity.ok(usuarios);
