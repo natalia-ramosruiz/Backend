@@ -13,14 +13,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = "http://127.0.0.1:5501") // Permite solicitudes desde tu frontend
 public class AuthController {
 
     private final UsuarioService usuarioService;
     private final JwtUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
-
 
     public AuthController(UsuarioService usuarioService, JwtUtil jwtUtil, PasswordEncoder passwordEncoder) {
         this.usuarioService = usuarioService;

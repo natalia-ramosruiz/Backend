@@ -11,14 +11,14 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String tipo_documento;
-    private Long numero_documento;
+//    private String tipo_documento;
+//    private Long numero_documento;
     private String nombre;
     private String apellido;
-    private String genero;
+//    private String genero;
     private String email;
     private String contrasena;
-    private String direccion;
+//    private String direccion;
     private Long telefono;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
@@ -27,42 +27,22 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long id_usuario, String tipo_documento, Long numero_documento, String nombre, String apellido, String genero, String email, String contrasena, String direccion, Long telefono, List<Pedido> pedidos) {
-        this.id = id_usuario;
-        this.tipo_documento = tipo_documento;
-        this.numero_documento = numero_documento;
+    public Usuario(Long id, String nombre, String apellido, String email, String contrasena, Long telefono, List<Pedido> pedidos) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.genero = genero;
         this.email = email;
         this.contrasena = contrasena;
-        this.direccion = direccion;
         this.telefono = telefono;
         this.pedidos = pedidos;
     }
 
-    public Long getId_usuario() {
+    public Long getId() {
         return id;
     }
 
-    public void setId_usuario(Long id_usuario) {
-        this.id = id_usuario;
-    }
-
-    public String getTipo_documento() {
-        return tipo_documento;
-    }
-
-    public void setTipo_documento(String tipo_documento) {
-        this.tipo_documento = tipo_documento;
-    }
-
-    public Long getNumero_documento() {
-        return numero_documento;
-    }
-
-    public void setNumero_documento(Long numero_documento) {
-        this.numero_documento = numero_documento;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -81,14 +61,6 @@ public class Usuario {
         this.apellido = apellido;
     }
 
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -103,14 +75,6 @@ public class Usuario {
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
     }
 
     public Long getTelefono() {
