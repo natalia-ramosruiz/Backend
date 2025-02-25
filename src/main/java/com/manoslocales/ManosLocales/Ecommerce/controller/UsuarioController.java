@@ -20,13 +20,6 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    // Crear un nuevo usuario
-    @PostMapping()
-    public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
-        Usuario nuevoUsuario = usuarioService.createUsuario(usuario);
-        return ResponseEntity.ok(nuevoUsuario);
-    }
-
     // Obtener un usuario por ID
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> getUsuarioById(@PathVariable Long id) {
